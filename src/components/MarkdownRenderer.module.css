@@ -1,0 +1,136 @@
+/* MarkdownRenderer styles — matches AinSathi design tokens */
+
+.root {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+/* ── Paragraph ─────────────────────────────────────────── */
+.root .para {
+  margin: 0 0 0.6em;
+}
+.root .para:last-child { margin-bottom: 0; }
+
+/* ── Headings ──────────────────────────────────────────── */
+.h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 0.9em 0 0.4em;
+  letter-spacing: 0.2px;
+}
+
+.h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0.8em 0 0.35em;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  padding-bottom: 0.25em;
+}
+
+/* ── Lists ─────────────────────────────────────────────── */
+.list {
+  margin: 0.4em 0 0.8em 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.list li {
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Unordered bullet style */
+ul.list { list-style: none; }
+ul.list li::before {
+  content: '';
+  position: absolute;
+  left: -1em;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* Ordered list */
+ol.list { list-style: decimal; }
+ol.list li::marker { color: var(--color-accent); font-weight: 600; }
+
+/* ── Inline code ────────────────────────────────────────── */
+.inlineCode {
+  font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-size: 12.5px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
+  color: var(--color-accent-light);
+  white-space: pre-wrap;
+}
+
+/* ── Code block ─────────────────────────────────────────── */
+.codeBlock {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 0.6em 0;
+}
+
+.codeLang {
+  display: block;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: rgba(201,168,76,0.07);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.codeBlock pre {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #e2e8f0;
+  white-space: pre;
+}
+
+/* ── Blockquote ─────────────────────────────────────────── */
+.blockquote {
+  margin: 0.6em 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid var(--color-accent);
+  background: rgba(201,168,76,0.05);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.blockquote p {
+  margin: 0.2em 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: 13.5px;
+}
+
+/* ── Horizontal rule ────────────────────────────────────── */
+.hr {
+  border: none;
+  border-top: 1px solid var(--color-border-soft);
+  margin: 0.75em 0;
+}
+
+/* ── Strong / em ────────────────────────────────────────── */
+.root strong { color: var(--color-text); font-weight: 700; }
+.root em     { color: var(--color-text-muted); font-style: italic; }

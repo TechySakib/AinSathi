@@ -1,0 +1,39 @@
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logoIcon {
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.3));
+  transition: filter 250ms ease;
+}
+
+.logoIcon:hover {
+  filter: drop-shadow(0 0 14px rgba(201, 168, 76, 0.6));
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logoEn {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #E8C46A 0%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logoBn {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #7B8DB0;
+  letter-spacing: 0.5px;
+}
