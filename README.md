@@ -59,5 +59,3 @@ The project relies on a Supabase PostgreSQL database for:
 
 Make sure to push your `schema.sql` to your Supabase project to ensure the backend interacts properly.
 
-## 🤝 Contributing
-Contributions are always welcome. Please consider contributing to making justice accessible!
