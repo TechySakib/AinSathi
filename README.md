@@ -55,7 +55,7 @@ Ensure you have the following installed:
 The project relies on a Supabase PostgreSQL database for:
 - User Authentication (Supabase Auth)
 - Chat History Persistence (`schema.sql`)
-- [Optional] Vector embeddings for local RAG retrieval
+- Vector embeddings for local RAG retrieval
 
 Make sure to push your `schema.sql` to your Supabase project to ensure the backend interacts properly.
 
