@@ -6,7 +6,7 @@ AinSathi is a secure, professional, and visually immersive AI-powered legal assi
 
 - **3D Interactive Homepage:** A stunning "Temple of Justice" immersive experience built with Three.js.
 - **RAG-Powered Legal AI:** A bilingual intelligent chatbot handling complex queries regarding the Bangladesh legal framework.
-- **Hybrid AI Model Integration:** Interacts with local, custom-trained AI models via a FastAPI proxy server, alongside Google Gemini capabilities.
+- **Hybrid AI Model Integration:** Interacts with local, custom-trained AI models via a FastAPI proxy server.
 - **Secure Authentication:** User management and reliable data persistence powered by Supabase.
 - **Privacy-First "Incognito Mode":** Advanced chat session management offering an ephemeral, private-session chat experience.
 - **Premium Design:** A cohesive design system utilizing a deep blue and gold color palette to establish legal authority, trust, and exceptional aesthetics.
