@@ -16,7 +16,7 @@ AinSathi is a secure, professional, and visually immersive AI-powered legal assi
 - **Frontend:** Next.js, React, TypeScript
 - **3D Rendering:** Three.js
 - **Backend & Auth:** Supabase (PostgreSQL), Next.js Server Components
-- **AI SDKs:** `@google/generative-ai` and Custom Python Model Server
+- **AI SDKs:** Custom Python Model Server
 - **Styling:** CSS Modules with Vanilla CSS constraints, targeting high-end dynamic web design
 
 ## 🚀 Getting Started
