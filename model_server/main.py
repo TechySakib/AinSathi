@@ -1,26 +1,3 @@
-"""
-AinSathi — Local AI Model Server
-=================================
-This FastAPI server exposes your trained chatbot model via a simple HTTP API.
-The Next.js frontend will call POST /chat on this server.
-
-HOW TO USE:
-  1. Place your saved model file (e.g. model.pt, model.h5, model.pkl, weights.json)
-     inside this folder or anywhere you prefer.
-  2. Fill in the two sections marked with  ──► TODO ◄──  below:
-       a) Load your model in  load_model()
-       b) Generate a response in  generate_response()
-  3. Start the server:
-       pip install -r requirements.txt
-       python main.py
-     It will listen on http://localhost:8000
-
-The Next.js app expects:
-  POST /chat
-  Body:  { "message": "user text", "history": [{"role":"user","content":"..."}, ...] }
-  Reply: { "response": "AI reply text" }
-"""
-
 from __future__ import annotations
 
 import os
@@ -28,109 +5,115 @@ import logging
 from contextlib import asynccontextmanager
 from typing import Literal
 
+import torch
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
-# ─── Logging ─────────────────────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO, format="%(levelname)s │ %(message)s")
 logger = logging.getLogger("ainsathi")
 
-# ─── Global model holder ─────────────────────────────────────────────────────
-# After load_model() runs, store whatever object you need here.
-model = None  # e.g. your PyTorch model / Keras model / tokenizer / pipeline
+model = None
+tokenizer = None
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
+MODEL_PATH = os.getenv("MODEL_PATH", "./models/ainsathi_qwen_merged")
 
-# ════════════════════════════════════════════════════════════════════════════
-#  ──► TODO 1 ◄──  Load your model here
-# ════════════════════════════════════════════════════════════════════════════
+SYSTEM_PROMPT = """You are AinSathi, a bilingual legal assistant for Bangladesh legal acts.
+Answer carefully and helpfully.
+Rules:
+1. Do not invent legal facts.
+2. If the answer is not supported, say: "Insufficient evidence in provided context."
+3. Match the user's language when possible.
+4. Be concise and clear.
+"""
+
 def load_model():
-    """
-    Load your trained model from disk and return it.
-    This runs ONCE at server startup for efficiency.
+    global tokenizer
 
-    Examples (uncomment the one that matches your setup):
+    logger.info(f"Loading model from: {MODEL_PATH}")
+    logger.info(f"Model path exists: {os.path.exists(MODEL_PATH)}")
 
-    ── PyTorch (.pt / .pth) ──────────────────────────────
-    import torch
-    from your_model_module import YourModelClass
-    m = YourModelClass()
-    m.load_state_dict(torch.load("model.pt", map_location="cpu"))
-    m.eval()
-    return m
+    if not os.path.exists(MODEL_PATH):
+        raise FileNotFoundError(f"Model folder not found: {MODEL_PATH}")
 
-    ── TensorFlow / Keras (.h5 or SavedModel) ────────────
-    import tensorflow as tf
-    return tf.keras.models.load_model("model.h5")
+    logger.info(f"Model files: {os.listdir(MODEL_PATH)}")
 
-    ── scikit-learn / pickle (.pkl) ──────────────────────
-    import pickle
-    with open("model.pkl", "rb") as f:
-        return pickle.load(f)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
-    ── JSON weights + NumPy ──────────────────────────────
-    import json, numpy as np
-    with open("weights.json") as f:
-        weights = json.load(f)
-    # build your model and load the weights manually
-    return weights
+    dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
-    ── Ollama / llama.cpp (subprocess) ───────────────────
-    # No file loading needed; just return a config dict
-    return {"model_name": "my-legal-model", "host": "http://localhost:11434"}
-    """
-    # ─── Replace this placeholder ───────────────────────
-    logger.warning("⚠  load_model() is not implemented yet — using echo mode.")
-    return None  # ← replace with your actual loading code
+    loaded_model = AutoModelForCausalLM.from_pretrained(
+        MODEL_PATH,
+        torch_dtype=dtype,
+        trust_remote_code=True,
+    )
+
+    loaded_model.to(device)
+    loaded_model.eval()
+    return loaded_model
 
 
-# ════════════════════════════════════════════════════════════════════════════
-#  ──► TODO 2 ◄──  Generate a response from your model
-# ════════════════════════════════════════════════════════════════════════════
+def build_prompt(message: str, history: list[dict]) -> str:
+    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+
+    for turn in history[-6:]:
+        role = turn.get("role", "user")
+        content = str(turn.get("content", "")).strip()
+        if not content:
+            continue
+        if role not in ("user", "assistant"):
+            role = "user"
+        messages.append({"role": role, "content": content})
+
+    messages.append({"role": "user", "content": message})
+
+    prompt = tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
+    )
+    return prompt
+
+
 def generate_response(loaded_model, message: str, history: list[dict]) -> str:
-    """
-    Given the loaded model, the new user message, and the conversation history,
-    return the model's text response.
+    if loaded_model is None or tokenizer is None:
+        raise RuntimeError("Model is not loaded.")
 
-    `history` is a list of dicts: [{"role": "user"|"assistant", "content": "..."}]
+    prompt = build_prompt(message, history)
 
-    Examples (uncomment the one that matches your setup):
+    inputs = tokenizer(
+        prompt,
+        return_tensors="pt",
+        truncation=True,
+        max_length=1024,
+    )
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+    prompt_len = inputs["input_ids"].shape[1]
 
-    ── Simple seq2seq / encoder-decoder ──────────────────
-    input_ids = tokenizer.encode(message, return_tensors="pt")
-    output_ids = loaded_model.generate(input_ids, max_new_tokens=200)
-    return tokenizer.decode(output_ids[0], skip_special_tokens=True)
-
-    ── Template-based with history ───────────────────────
-    prompt = ""
-    for turn in history[-6:]:   # keep last 6 turns as context
-        role = "User" if turn["role"] == "user" else "Assistant"
-        prompt += f"{role}: {turn['content']}\\n"
-    prompt += f"User: {message}\\nAssistant:"
-    return my_inference_function(loaded_model, prompt)
-
-    ── Ollama ────────────────────────────────────────────
-    import requests
-    r = requests.post("http://localhost:11434/api/chat", json={
-        "model": loaded_model["model_name"],
-        "messages": history + [{"role": "user", "content": message}],
-        "stream": False,
-    })
-    return r.json()["message"]["content"]
-    """
-    # ─── Placeholder echo (replace this) ────────────────
-    if loaded_model is None:
-        return (
-            f"⚠ The model server is running in placeholder mode. "
-            f"Please implement generate_response() in model_server/main.py. "
-            f"You said: \"{message}\""
+    with torch.no_grad():
+        outputs = loaded_model.generate(
+            **inputs,
+            max_new_tokens=220,
+            do_sample=False,
+            temperature=1.0,
+            pad_token_id=tokenizer.pad_token_id,
+            eos_token_id=tokenizer.eos_token_id,
         )
-    # ← replace with your actual inference code
-    return f"Model response to: {message}"
+
+    new_tokens = outputs[0][prompt_len:]
+    reply = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+
+    if not reply:
+        reply = "Insufficient evidence in provided context."
+
+    return reply
 
 
-# ─── Pydantic schemas ─────────────────────────────────────────────────────────
 class HistoryItem(BaseModel):
     role: Literal["user", "assistant"]
     content: str
@@ -145,7 +128,6 @@ class ChatResponse(BaseModel):
     response: str
 
 
-# ─── Lifespan (startup / shutdown) ───────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global model
@@ -160,7 +142,6 @@ async def lifespan(app: FastAPI):
     logger.info("👋 Shutting down model server.")
 
 
-# ─── FastAPI app ──────────────────────────────────────────────────────────────
 app = FastAPI(
     title="AinSathi Model Server",
     description="Local AI inference server for the AinSathi legal chatbot",
@@ -168,7 +149,6 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Allow requests from the Next.js dev server (and production)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -181,18 +161,24 @@ app.add_middleware(
 )
 
 
-# ─── Routes ──────────────────────────────────────────────────────────────────
 @app.get("/health")
 def health_check():
-    """Quick check — the Next.js app uses this to show model status."""
-    return {"status": "ok", "model_loaded": model is not None}
+    return {
+        "status": "ok",
+        "model_loaded": model is not None,
+        "device": device,
+        "model_path": MODEL_PATH,
+        "model_path_exists": os.path.exists(MODEL_PATH),
+    }
 
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
-    """Main inference endpoint called by Next.js."""
     if not request.message.strip():
         raise HTTPException(status_code=400, detail="message cannot be empty")
+
+    if model is None:
+        raise HTTPException(status_code=500, detail="Model failed to load. Check server logs.")
 
     history = [h.model_dump() for h in request.history]
 
@@ -205,8 +191,13 @@ def chat(request: ChatRequest):
     return ChatResponse(response=reply)
 
 
-# ─── Entry point ─────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     port = int(os.getenv("MODEL_PORT", "8000"))
     logger.info(f"🌐 AinSathi model server starting on http://localhost:{port}")
-    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=port,
+        reload=False,
+        http="h11"
+    )

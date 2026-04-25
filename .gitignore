@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python / Model Server
+model_server/venv/
+model_server/data/
+model_server/rag_store/
+model_server/__pycache__/
+model_server/*.json
+model_server/*.csv
+*.safetensors
+__pycache__/

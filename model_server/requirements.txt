@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+torch
+transformers
+accelerate
+sentencepiece
+safetensors
+faiss-cpu
+sentence-transformers
+rank-bm25
+pandas
+numpy
+requests
