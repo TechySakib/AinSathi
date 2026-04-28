@@ -104,9 +104,9 @@ Ensure you have the following installed on your system:
 
 **Verify your installations:**
 ```bash
-node --version    # Should be v18+
-npm --version
-python --version  # Should be 3.10+
+node --v25.9.0((v18+)    
+Next.js --v16.2.3
+python --3.12.10(3.8+)
 ```
 
 ### Quick Start (5 minutes)
@@ -114,7 +114,7 @@ python --version  # Should be 3.10+
 #### **Step 1: Clone the Repository**
 
 ```bash
-git clone YOUR_GITHUB_REPO_URL
+git clone (https://github.com/TechySakib/AinSathi)
 cd ainsathi
 ```
 
@@ -615,7 +615,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 - **Issues:** [GitHub Issues](https://github.com/your-repo/issues)
 - **Discussions:** [GitHub Discussions](https://github.com/your-repo/discussions)
-- **Email:** support@ainsathi.example.com
+- **Email:** nazmus.sakib1@northsouth.edu
 
 ---
 
