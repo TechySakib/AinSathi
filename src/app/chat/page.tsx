@@ -15,6 +15,7 @@ import {
   deleteConversation,
   type Conversation,
   type Message,
+  type Citation,
 } from '@/lib/chatHistory'
 import { useIncognito } from '@/hooks/useIncognito'
 import Logo from '@/components/Logo'
@@ -28,11 +29,11 @@ function TypingIndicator() {
     <div className={styles.typingWrap} aria-label="AI is thinking">
       <div className={styles.aiBubbleAvatar}>
         <svg width="14" height="14" viewBox="0 0 60 60" fill="none">
-          <line x1="30" y1="10" x2="30" y2="48" stroke="#C9A84C" strokeWidth="3"/>
-          <line x1="12" y1="19" x2="48" y2="19" stroke="#C9A84C" strokeWidth="2.5"/>
-          <ellipse cx="17" cy="30" rx="8" ry="2.5" fill="#C9A84C"/>
-          <ellipse cx="43" cy="30" rx="8" ry="2.5" fill="#C9A84C"/>
-          <circle cx="30" cy="10" r="3" fill="#C9A84C"/>
+          <line x1="30" y1="10" x2="30" y2="48" stroke="#C9A84C" strokeWidth="3" />
+          <line x1="12" y1="19" x2="48" y2="19" stroke="#C9A84C" strokeWidth="2.5" />
+          <ellipse cx="17" cy="30" rx="8" ry="2.5" fill="#C9A84C" />
+          <ellipse cx="43" cy="30" rx="8" ry="2.5" fill="#C9A84C" />
+          <circle cx="30" cy="10" r="3" fill="#C9A84C" />
         </svg>
       </div>
       <div className={styles.typingBubble}>
@@ -61,10 +62,10 @@ function MessageBubble({ msg }: { msg: Message }) {
       {!isUser && (
         <div className={styles.aiBubbleAvatar}>
           <svg width="14" height="14" viewBox="0 0 60 60" fill="none">
-            <line x1="30" y1="10" x2="30" y2="48" stroke="#C9A84C" strokeWidth="3"/>
-            <line x1="12" y1="19" x2="48" y2="19" stroke="#C9A84C" strokeWidth="2.5"/>
-            <ellipse cx="17" cy="30" rx="8" ry="2.5" fill="#C9A84C"/>
-            <ellipse cx="43" cy="30" rx="8" ry="2.5" fill="#C9A84C"/>
+            <line x1="30" y1="10" x2="30" y2="48" stroke="#C9A84C" strokeWidth="3" />
+            <line x1="12" y1="19" x2="48" y2="19" stroke="#C9A84C" strokeWidth="2.5" />
+            <ellipse cx="17" cy="30" rx="8" ry="2.5" fill="#C9A84C" />
+            <ellipse cx="43" cy="30" rx="8" ry="2.5" fill="#C9A84C" />
           </svg>
         </div>
       )}
@@ -78,6 +79,25 @@ function MessageBubble({ msg }: { msg: Message }) {
           // AI messages: full markdown rendering
           <MarkdownRenderer content={msg.content} />
         )}
+        {!isUser && msg.citations && msg.citations.length > 0 && (
+          <div className={styles.sourcesBox}>
+            <div className={styles.sourcesTitle}>Sources</div>
+            {msg.citations.map((citation) => (
+              <details key={citation.id} className={styles.sourceItem}>
+                <summary className={styles.sourceSummary}>
+                  [{citation.id}] {citation.act_title}
+                  {citation.section ? ` — Section ${citation.section}` : ''}
+                </summary>
+                <div className={styles.sourceBody}>
+                  <p><strong>Year:</strong> {citation.year || 'N/A'}</p>
+                  <p><strong>Status:</strong> {citation.status || 'N/A'}</p>
+                  <p className={styles.sourceText}>{citation.text}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        )}
+
         <div className={styles.bubbleFooter}>
           <span className={styles.bubbleTime}>
             {new Date(msg.created_at).toLocaleTimeString('en-BD', { hour: '2-digit', minute: '2-digit' })}
@@ -92,12 +112,12 @@ function MessageBubble({ msg }: { msg: Message }) {
             >
               {copied ? (
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ECDC4" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"/>
+                  <polyline points="20 6 9 17 4 12" />
                 </svg>
               ) : (
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                 </svg>
               )}
             </button>
@@ -117,7 +137,7 @@ function ConvItem({
     <div className={`${styles.convItem} ${active ? styles.convActive : ''}`} onClick={onClick}>
       <div className={styles.convIcon}>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
       </div>
       <span className={styles.convTitle}>{conv.title}</span>
@@ -132,8 +152,8 @@ function ConvItem({
         aria-label="Delete conversation"
       >
         {confirm
-          ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
-          : <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+          ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" strokeWidth="2"><polyline points="20 6 9 17 4 12" /></svg>
+          : <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6" /><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" /></svg>
         }
       </button>
     </div>
@@ -146,18 +166,18 @@ export default function ChatPage() {
   const supabase = createClient()
   const { isIncognito, toggleIncognito } = useIncognito()
 
-  const [userId, setUserId]             = useState<string | null>(null)
-  const [userName, setUserName]         = useState('User')
+  const [userId, setUserId] = useState<string | null>(null)
+  const [userName, setUserName] = useState('User')
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeConvId, setActiveConvId] = useState<string | null>(null)
-  const [messages, setMessages]         = useState<Message[]>([])
-  const [input, setInput]               = useState('')
-  const [loading, setLoading]           = useState(false)
-  const [sidebarOpen, setSidebarOpen]   = useState(true)
-  const [initDone, setInitDone]         = useState(false)
+  const [messages, setMessages] = useState<Message[]>([])
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [initDone, setInitDone] = useState(false)
 
   const bottomRef = useRef<HTMLDivElement>(null)
-  const inputRef  = useRef<HTMLTextAreaElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
 
   // ── Auth ──────────────────────────────────────────────
   useEffect(() => {
@@ -261,8 +281,10 @@ export default function ChatPage() {
         conversation_id: convId ?? 'incognito',
         role: 'assistant',
         content: aiContent,
+        citations: data.citations ?? [],
         created_at: new Date().toISOString(),
       }
+      console.log('AI response data:', data)
       setMessages(prev => [...prev, aiMsg])
 
       if (!isIncognito && convId) {
@@ -328,7 +350,7 @@ export default function ChatPage() {
           <button id="new-chat-btn" className={`btn btn-primary ${styles.newChatBtn}`}
             onClick={startNewConversation} title="New conversation">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
             </svg>
             New Chat
           </button>
@@ -338,9 +360,9 @@ export default function ChatPage() {
         <div className={`${styles.incognitoToggle} ${isIncognito ? styles.incognitoOn : ''}`}>
           <div className={styles.incognitoInfo}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
-              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-              <line x1="1" y1="1" x2="23" y2="23"/>
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+              <line x1="1" y1="1" x2="23" y2="23" />
             </svg>
             <div>
               <span className={styles.incognitoLabel}>Incognito Mode</span>
@@ -369,9 +391,9 @@ export default function ChatPage() {
           {isIncognito && (
             <div className={styles.incognitoNote}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
-                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-                <line x1="1" y1="1" x2="23" y2="23"/>
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                <line x1="1" y1="1" x2="23" y2="23" />
               </svg>
               <p>History is disabled in incognito mode</p>
             </div>
@@ -396,9 +418,9 @@ export default function ChatPage() {
           <button id="logout-btn" className={`btn btn-ghost ${styles.logoutBtn}`}
             onClick={handleLogout} title="Sign out" aria-label="Sign out">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-              <polyline points="16 17 21 12 16 7"/>
-              <line x1="21" y1="12" x2="9" y2="12"/>
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
             </svg>
           </button>
         </div>
@@ -411,15 +433,15 @@ export default function ChatPage() {
           <button id="sidebar-toggle" className={styles.sidebarToggle}
             onClick={() => setSidebarOpen(p => !p)} aria-label="Toggle sidebar">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
 
           <div className={styles.topBarTitle}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
             Bangladesh Legal Assistant
           </div>
@@ -427,9 +449,9 @@ export default function ChatPage() {
           {isIncognito && (
             <div className={styles.incognitoBanner} role="status">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
-                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-                <line x1="1" y1="1" x2="23" y2="23"/>
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                <line x1="1" y1="1" x2="23" y2="23" />
               </svg>
               Incognito — not saving
             </div>
@@ -442,13 +464,13 @@ export default function ChatPage() {
             <div className={styles.welcome}>
               <div className={styles.welcomeIcon}>
                 <svg width="36" height="36" viewBox="0 0 60 60" fill="none">
-                  <line x1="30" y1="8" x2="30" y2="50" stroke="#C9A84C" strokeWidth="3.5"/>
-                  <line x1="10" y1="18" x2="50" y2="18" stroke="#C9A84C" strokeWidth="3"/>
-                  <line x1="12" y1="18" x2="15" y2="32" stroke="#C9A84C" strokeWidth="2.5"/>
-                  <ellipse cx="13.5" cy="32" rx="9" ry="3" fill="#C9A84C"/>
-                  <line x1="48" y1="18" x2="45" y2="32" stroke="#C9A84C" strokeWidth="2.5"/>
-                  <ellipse cx="46.5" cy="32" rx="9" ry="3" fill="#C9A84C"/>
-                  <circle cx="30" cy="8" r="3.5" fill="#C9A84C"/>
+                  <line x1="30" y1="8" x2="30" y2="50" stroke="#C9A84C" strokeWidth="3.5" />
+                  <line x1="10" y1="18" x2="50" y2="18" stroke="#C9A84C" strokeWidth="3" />
+                  <line x1="12" y1="18" x2="15" y2="32" stroke="#C9A84C" strokeWidth="2.5" />
+                  <ellipse cx="13.5" cy="32" rx="9" ry="3" fill="#C9A84C" />
+                  <line x1="48" y1="18" x2="45" y2="32" stroke="#C9A84C" strokeWidth="2.5" />
+                  <ellipse cx="46.5" cy="32" rx="9" ry="3" fill="#C9A84C" />
+                  <circle cx="30" cy="8" r="3.5" fill="#C9A84C" />
                 </svg>
               </div>
               <h2 className={styles.welcomeTitle}>
@@ -501,12 +523,12 @@ export default function ChatPage() {
             >
               {loading ? (
                 <svg className={styles.sendSpinner} width="18" height="18" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="31.4" strokeDashoffset="10"/>
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="31.4" strokeDashoffset="10" />
                 </svg>
               ) : (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="22" y1="2" x2="11" y2="13"/>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
                 </svg>
               )}
             </button>

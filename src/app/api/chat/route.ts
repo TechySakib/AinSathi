@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
           message: message.trim(),
           history: history ?? [],
         }),
-        signal: AbortSignal.timeout(60_000),
+        signal: AbortSignal.timeout(180_000),
       })
     } catch (fetchErr: unknown) {
       const isTimeout =
@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
 
     const data = (await modelResponse.json()) as {
       response?: string
+      citations?: unknown[]
       error?: string
     }
 
@@ -68,7 +69,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: data.error }, { status: 500 })
     }
 
-    return NextResponse.json({ response: data.response ?? '' })
+    return NextResponse.json({
+      response: data.response ?? '',
+      citations: data.citations ?? [],
+    })
   } catch (err: unknown) {
     console.error('Chat API error:', err)
     const message =

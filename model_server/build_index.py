@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 import faiss
@@ -12,8 +13,12 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 EMBED_MODEL = "intfloat/multilingual-e5-base"
 
 
+def clean_act_title(title: str) -> str:
+    return re.sub(r"^\d+", "", str(title)).strip()
+
+
 def make_embed_text(row):
-    act = str(row.get("act_title", "")).strip()
+    act = clean_act_title(row.get("act_title", ""))
     year = str(row.get("year", "")).strip()
     section = str(row.get("section", "")).strip()
     status = str(row.get("status", "")).strip()
@@ -27,14 +32,17 @@ def main():
     records = []
 
     for _, row in df.iterrows():
+        act_title = clean_act_title(row["act_title"])
+
         rec = {
             "id": str(row["id"]).strip(),
-            "act_title": str(row["act_title"]).strip(),
+            "act_title": act_title,
             "year": str(row["year"]).strip(),
             "section": str(row["section"]).strip(),
             "status": str(row["status"]).strip(),
             "text": str(row["text"]).strip(),
         }
+
         rec["embed_text"] = make_embed_text(rec)
         records.append(rec)
 
@@ -69,6 +77,7 @@ def main():
         )
 
     print("Index built successfully.")
+    print(f"Total records: {len(records)}")
 
 
 if __name__ == "__main__":

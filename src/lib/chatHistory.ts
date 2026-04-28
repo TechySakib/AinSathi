@@ -1,13 +1,22 @@
 import { createClient } from '@/lib/supabase/client'
 
+export type Citation = {
+  id: string
+  act_title: string
+  year: string
+  section: string
+  status: string
+  text: string
+}
+
 export type Message = {
   id: string
   conversation_id: string
   role: 'user' | 'assistant'
   content: string
+  citations?: Citation[]
   created_at: string
 }
-
 export type Conversation = {
   id: string
   user_id: string

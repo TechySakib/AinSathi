@@ -49,3 +49,4 @@ model_server/*.json
 model_server/*.csv
 *.safetensors
 __pycache__/
+rag_store/
