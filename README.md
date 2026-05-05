@@ -1734,7 +1734,7 @@ npx tsc --noEmit
 
 | Name | Role | Contact |
 |------|------|---------|
-| **Md NAzmus Sakib** | Lead Developer | [@github]([https://github.com/TechySakib]) |
+| **Md NAzmus Sakib** | Lead Developer | ([https://github.com/TechySakib]) |
 | **Team Member 1** | Backend Engineer | [@github](https://github.com) |
 | **Muhammad Shafayat Oshman** | Project Advisor | [muhammad.oshman@northsouth.edu] |
 
