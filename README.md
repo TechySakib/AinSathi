@@ -8,7 +8,6 @@
 ![Supabase](https://img.shields.io/badge/Database-Supabase%20PostgreSQL-3ecf8e?style=for-the-badge&logo=supabase)
 ![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue?style=for-the-badge&logo=typescript)
 ![Three.js](https://img.shields.io/badge/3D-Three.js-black?style=for-the-badge&logo=three.js)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Web%20Based-lightblue?style=for-the-badge)
 
 **A full-featured AI-powered legal assistant platform with RAG retrieval, 3D visualization, and enterprise-grade security**
