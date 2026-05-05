@@ -605,7 +605,7 @@ git --version
 #### Step 1.1: Clone Repository
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/ainsathi.git
+git clone https://github.com/TechySakib/ainsathi.git
 
 # Navigate to project
 cd ainsathi
@@ -1604,7 +1604,7 @@ We welcome contributions from the community! Follow these steps:
 ```bash
 # Fork on GitHub
 # Then clone your fork
-git clone https://github.com/YOUR_USERNAME/ainsathi.git
+git clone https://github.com/TechySakib/ainsathi.git
 cd ainsathi
 ```
 
@@ -1734,10 +1734,9 @@ npx tsc --noEmit
 
 | Name | Role | Contact |
 |------|------|---------|
-| **Your Name** | Lead Developer | [@github](https://github.com) |
+| **Md NAzmus Sakib** | Lead Developer | [@github]([https://github.com/TechySakib]) |
 | **Team Member 1** | Backend Engineer | [@github](https://github.com) |
-| **Team Member 2** | Frontend Engineer | [@github](https://github.com) |
-| **Supervisor** | Project Advisor | [email] |
+| **Muhammad Shafayat Oshman** | Project Advisor | [muhammad.oshman@northsouth.edu] |
 
 ---
 
