@@ -1734,8 +1734,8 @@ npx tsc --noEmit
 
 | Name | Role | Contact |
 |------|------|---------|
-| **Md NAzmus Sakib** | Lead Developer | ([https://github.com/TechySakib]) |
-| **Team Member 1** | Backend Engineer | [@github](https://github.com) |
+| **Md NAzmus Sakib** | Lead Developer | [https://github.com/TechySakib] |
+| **Dewan Anisa Nahian** | Backend Engineer | [https://github.com/Anisa-Nahian] |
 | **Muhammad Shafayat Oshman** | Project Advisor | [muhammad.oshman@northsouth.edu] |
 
 ---
@@ -1902,11 +1902,9 @@ A:
 
 ## 📞 Support & Community
 
-- **GitHub Issues** → [Report bugs](https://github.com/YOUR_REPO/issues)
+- **GitHub Issues** → [Report bugs](https://github.com//issues)
 - **GitHub Discussions** → [Ask questions](https://github.com/YOUR_REPO/discussions)
 - **Email Support** → your.email@example.com
-- **Discord Community** → [Join our server](https://discord.gg/your-server)
-- **Twitter** → [@YourHandle](https://twitter.com)
 
 ---
 
