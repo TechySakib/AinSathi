@@ -1908,22 +1908,6 @@ A:
 
 ---
 
-## 📜 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for full details.
-
-**You are free to:**
-- Use for commercial purposes
-- Modify the code
-- Distribute and sublicense
-- Use privately
-
-**You must:**
-- Include the original license
-- Include copyright notice
-
----
-
 ## 🎓 Learning Outcomes
 
 After using and contributing to this project, you'll understand:
