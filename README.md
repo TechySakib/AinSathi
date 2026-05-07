@@ -1903,8 +1903,8 @@ A:
 ## 📞 Support & Community
 
 - **GitHub Issues** → [Report bugs](https://github.com//issues)
-- **GitHub Discussions** → [Ask questions](https://github.com/YOUR_REPO/discussions)
-- **Email Support** → your.email@example.com
+- **GitHub Discussions** → [Ask questions](https://github.com/TechySakib/discussions)
+- **Email Support** → nazmus.sakib1@northsouth.edu
 
 ---
 
@@ -1958,7 +1958,7 @@ After using and contributing to this project, you'll understand:
 
 ---
 
-*Last Updated: January 15, 2024*  
+*Last Updated: May 08,2026
 *Version: 1.0.0*  
 *Status: Production Ready* ✨
 
