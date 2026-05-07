@@ -1904,7 +1904,6 @@ A:
 
 - **GitHub Issues** → [Report bugs](https://github.com//issues)
 - **GitHub Discussions** → [Ask questions](https://github.com/TechySakib/discussions)
-- **Email Support** → nazmus.sakib1@northsouth.edu
 
 ---
 
