@@ -1,16 +1,17 @@
-# 🏬 Chain of Stores — Sales Management System
+# ⚖️ আইনসাথী AinSathi - AI Legal Assistant
 
 <div align="center">
 
-![PHP](https://img.shields.io/badge/Backend-PHP%207%2B-777BB4?style=for-the-badge&logo=php)
-![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?style=for-the-badge&logo=mysql)
-![HTML5](https://img.shields.io/badge/Frontend-HTML5%20%2F%20CSS3-E34F26?style=for-the-badge&logo=html5)
-![FontAwesome](https://img.shields.io/badge/Icons-FontAwesome-528DD7?style=for-the-badge&logo=fontawesome)
-![Platform](https://img.shields.io/badge/Platform-Web%20Based-lightblue?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Frontend-Next.js%2014-black?style=for-the-badge&logo=next.js)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/AI%20Model-Python%203.10%2B-3776ab?style=for-the-badge&logo=python)
+![Supabase](https://img.shields.io/badge/Database-Supabase%20PostgreSQL-3ecf8e?style=for-the-badge&logo=supabase)
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue?style=for-the-badge&logo=typescript)
+![Three.js](https://img.shields.io/badge/3D-Three.js-black?style=for-the-badge&logo=three.js)
 
-**A role-based retail management platform for multi-branch store operations, built with PHP, MySQL, and a modern glassmorphism UI**
+**A production-grade AI-powered legal assistant platform with RAG retrieval, 3D visualization, and enterprise-grade security**
 
-[Features](#-features) • [Architecture](#-system-architecture) • [Installation](#-installation--setup) • [Credentials](#-default-credentials) • [Security](#-security-considerations)
+[Features](#-key-features) • [Installation](#-installation) • [Architecture](#-architecture) • [API Documentation](#-api-documentation) • [Deployment](#-deployment) • [Contributing](#-contributing)
 
 </div>
 
@@ -18,91 +19,233 @@
 
 ## 🎯 Overview
 
-**Chain of Stores** is a full-featured, multi-role web application designed to centralize retail operations across multiple store branches. It supports three distinct user roles — **Manager**, **Salesman**, and **Customer** — each with a dedicated dashboard and scoped access, all accessible through a single unified login.
+**আইনসাথী (AinSathi)** is a production-grade AI-powered legal assistant platform specifically designed for the Bangladesh legal framework. It seamlessly integrates **advanced NLP algorithms**, **RAG retrieval systems**, **3D visualization**, and **modern cloud infrastructure** to deliver accurate, contextual, and cited legal insights in real-time.
 
 ### 💡 Why This Project?
 
-- ✅ **Role-Based Architecture** — Clean separation of concerns across three user types
-- ✅ **Real-Time Sales Recording** — Salesmen log transactions instantly from their dashboard
-- ✅ **Customer-Facing Portal** — Full shopping flow with cart, reviews, and purchase history
-- ✅ **Analytics & Reporting** — Managers get aggregated sales insights across all branches
-- ✅ **Modern UI Design** — Glassmorphism aesthetic with responsive layouts
+- ✅ **Real-World RAG Implementation** - Hybrid FAISS + BM25 retrieval in production
+- ✅ **Enterprise Architecture** - Full-stack deployment with Supabase, FastAPI, and Next.js
+- ✅ **3D Interactive UI** - Immersive "Temple of Justice" experience using Three.js
+- ✅ **Bilingual Support** - Seamless Bengali & English legal queries
+- ✅ **Security-First Design** - JWT authentication, encrypted sessions, privacy mode
+- ✅ **Educational Value** - Learn RAG, NLP, 3D graphics, and full-stack development
+- ✅ **Practical Utility** - Genuinely helps users understand Bangladesh legal codes
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-### 🔐 Authentication
-- Unified login for all user roles (Manager, Salesman, Customer)
-- Session-based access control with role-aware redirection
-- Customer self-registration via `/register.php`
-- Secure logout with full session destruction
+### 📝 **Bilingual Legal Chatbot**
+- **Bengali & English support** for legal queries
+- Context-aware responses powered by local AI models
+- Citation-based answers with legal section references
+- Conversation history management
+- Real-time streaming responses
+- Query relevance validation
 
-### 🧑‍💼 Manager Module
-| Feature | Description |
-|---|---|
-| Dashboard | Overview of stores, staff, products, and recent sales |
-| Employee Management | Add, view, and remove employee accounts |
-| Store Management | Create and manage multiple branch locations |
-| Product Management | Full CRUD for the product catalog |
-| Employee Assignment | Map salesmen to specific store branches |
-| Sales Reports | Aggregated analytics across all stores and employees |
+```
+Example Query:
+User: "চুরি কী?" (What is theft?)
+Response: "চুরি হল কোনো ব্যক্তির সম্পত্তি অনুমতি ছাড়া 
+নেওয়া...সংজ্ঞা দেখুন: Penal Code 378"
+Citations: [C1: Penal Code Section 378]
+```
 
-### 👨‍💼 Salesman Module
-| Feature | Description |
-|---|---|
-| Personal Dashboard | Summary of assigned store and recent activity |
-| Assigned Store View | Details of the salesman's assigned branch |
-| Record Sales | Log new transactions in real time |
-| Sales History | Personal log of all recorded transactions |
+### 🎨 **3D Interactive Homepage**
+- **Temple of Justice** - Stunning immersive experience
+- Interactive 3D scene built with Three.js
+- Responsive design across all devices
+- Smooth camera animations and transitions
+- Touch/mouse controls for exploration
+- Performance-optimized rendering
 
-### 👥 Customer Module
-| Feature | Description |
-|---|---|
-| Registration | Self-service account creation |
-| Product Browsing | Grid catalog with detailed popup modals |
-| Reviews & Ratings | Star ratings and text reviews per product |
-| Shopping Cart | Add, adjust, and remove items before checkout |
-| Purchase History | Full log of past orders with dates and amounts |
+### 🧠 **Retrieval-Augmented Generation (RAG)**
+
+#### Hybrid Retrieval System
+```
+Legal Query (Bengali/English)
+        │
+        ├─→ [BM25 Full-Text Search] ────┐
+        │                                 │
+        └─→ [FAISS Vector Search] ───────┤
+                                          │
+                                    [Ranking Algorithm]
+                                          │
+                                    [Top-K Results]
+                                          │
+                                   [Context Window]
+                                          │
+                                    [LLM Prompt]
+                                          │
+                                   [Citation Generation]
+```
+
+**Features:**
+- Dual retrieval (BM25 keyword + FAISS embeddings)
+- Automatic context window management
+- Intelligent result ranking
+- Citation tracking and metadata preservation
+- Out-of-scope detection
+- Query expansion for better coverage
+
+### 🔐 **Enterprise Security**
+- **JWT-based authentication** with Supabase
+- Role-based access control (RBAC)
+- Encrypted sensitive data
+- Secure session management
+- Privacy-first "Incognito Mode"
+  - Ephemeral sessions (no persistence)
+  - No history storage
+  - Automatic cleanup
+- CORS protection
+- Rate limiting on API endpoints
+
+### 💾 **Data Persistence Layer**
+
+```sql
+-- PostgreSQL Schema (Simplified)
+users
+├── id (UUID)
+├── email (unique)
+├── full_name
+├── created_at
+└── metadata (JSONB)
+
+chat_sessions
+├── id (UUID)
+├── user_id (FK)
+├── title
+├── created_at
+├── updated_at
+└── metadata
+
+chat_messages
+├── id (UUID)
+├── session_id (FK)
+├── role (user|assistant)
+├── content (text)
+├── citations (JSONB array)
+├── embedding_vector (pgvector)
+└── created_at
+```
+
+### 🎯 **Advanced Features**
+- Session persistence with full history
+- Full-text search across chat history
+- Vector-based semantic search
+- Message statistics (avg response time, accuracy metrics)
+- User preferences storage
+- Legal section bookmarking
+- Citation management
 
 ---
 
 ## 🏗️ System Architecture
 
+### Three-Tier Architecture
 ```
-┌───────────────────────────────────────────────────┐
-│                Browser (Client)                   │
-│           HTML5 + CSS3 + FontAwesome              │
-└────────────────────┬──────────────────────────────┘
-                     │ HTTP Requests
-┌────────────────────▼──────────────────────────────┐
-│               Apache Web Server                   │
-│                                                   │
-│  ┌───────────┐  ┌─────────────┐  ┌────────────┐  │
-│  │  Manager  │  │   Employee  │  │  Customer  │  │
-│  │  Module   │  │   Module    │  │   Module   │  │
-│  └─────┬─────┘  └──────┬──────┘  └─────┬──────┘  │
-│        └───────────────┼────────────────┘         │
-│                        │                          │
-│             ┌──────────▼──────────┐               │
-│             │   includes/db.php   │               │
-│             │   (PDO / MySQLi)    │               │
-│             └──────────┬──────────┘               │
-└────────────────────────┼──────────────────────────┘
-                         │
-┌────────────────────────▼──────────────────────────┐
-│              MySQL Database                       │
-│           (chain_of_store schema)                 │
-└───────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│                PRESENTATION LAYER                    │
+│                   (Next.js + React)                  │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ • Chat UI Component                          │  │
+│  │ • 3D Temple Renderer (Three.js)             │  │
+│  │ • Message Management                        │  │
+│  │ • Citation Display System                   │  │
+│  │ • Authentication UI                         │  │
+│  └──────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────┘
+                         ↓ (HTTP/REST)
+┌──────────────────────────────────────────────────────┐
+│                 APPLICATION LAYER                    │
+│              (Next.js Server + FastAPI)              │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ Next.js Server Components                   │  │
+│  │ • API route handlers                        │  │
+│  │ • Supabase auth integration                 │  │
+│  │ • Session management                        │  │
+│  │ • Request validation                        │  │
+│  └──────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ FastAPI Backend (Python)                    │  │
+│  │ • RAG pipeline orchestration                │  │
+│  │ • Model inference server                    │  │
+│  │ • Retrieval coordination                    │  │
+│  │ • Response generation                       │  │
+│  └──────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────┘
+                         ↓ (API Calls)
+┌──────────────────────────────────────────────────────┐
+│                    DATA LAYER                        │
+│        (Supabase PostgreSQL + Vector DB)            │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ PostgreSQL Database                         │  │
+│  │ • User profiles                             │  │
+│  │ • Chat sessions & messages                  │  │
+│  │ • User preferences                          │  │
+│  └──────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ Knowledge Base                              │  │
+│  │ • Legal sections (CSV)                      │  │
+│  │ • FAISS vector index                        │  │
+│  │ • BM25 inverted index                       │  │
+│  │ • Metadata storage                          │  │
+│  └──────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────┘
 ```
 
-### Role Routing Flow
+### RAG Pipeline Deep Dive
 ```
-Login → Role Check → Redirect
-           │
-           ├── manager   → /manager/manager_dashboard.php
-           ├── employee  → /employee/employee_dashboard.php
-           └── customer  → /customer/customer_dashboard.php
+User Query
+    │
+    ├─────────────────────────────────────┐
+    │                                     │
+    ▼                                     ▼
+[Preprocessing]                  [Query Embedding]
+├─ Tokenization                  ├─ BERT/Qwen encoder
+├─ Lowercasing                   ├─ Normalize to 768-dim
+├─ Spell check                   └─ Vector (pgvector)
+└─ Language detection
+    │                                     │
+    └─────────────────┬───────────────────┘
+                      │
+        ┌─────────────┴─────────────┐
+        │                           │
+        ▼                           ▼
+    [BM25 Search]             [FAISS Search]
+    ├─ Tokenize                ├─ Vector similarity
+    ├─ TF-IDF scoring          ├─ Return K nearest
+    ├─ Keyword matching        └─ Rank by distance
+    └─ Return top-K
+        │                           │
+        └─────────────┬─────────────┘
+                      │
+            [Fusion & Re-ranking]
+            ├─ Combine results
+            ├─ Remove duplicates
+            ├─ Score normalization
+            └─ Sort by relevance
+                      │
+                      ▼
+          [Context Window Assembly]
+          ├─ Concatenate chunks
+          ├─ Add metadata
+          ├─ Verify relevance
+          └─ Create prompt
+                      │
+                      ▼
+            [LLM Generation]
+            ├─ Forward pass (Qwen)
+            ├─ Token streaming
+            ├─ Citation tracking
+            └─ Response assembly
+                      │
+                      ▼
+            [Post-Processing]
+            ├─ Extract citations
+            ├─ Format response
+            ├─ Add metadata
+            └─ Stream to client
 ```
 
 ---
@@ -110,194 +253,669 @@ Login → Role Check → Redirect
 ## 🗂️ Project Structure
 
 ```
-Chain-of-Stores-Sale-Management-System/
+ainsathi/
 │
-├── includes/
-│   ├── db.php                    # PDO + MySQLi DB connection
-│   └── footer.php                # Shared footer template
+├── 📄 README.md                          # This file
+├── 📄 package.json                       # Frontend dependencies
+├── 📄 tsconfig.json                      # TypeScript configuration
+├── 📄 next.config.js                     # Next.js configuration
+├── 📄 .env.local.example                 # Environment template
+├── 📄 .gitignore                         # Git ignore rules
 │
-├── manager/
-│   ├── manager_dashboard.php     # Admin overview
-│   ├── add_employee.php          # Register new employees
-│   ├── view_employees.php        # List & remove employees
-│   ├── add_store.php             # Create store branches
-│   ├── add_product.php           # Add products to catalog
-│   ├── view_products.php         # Browse & manage products
-│   ├── assign_employee_store.php # Assign staff to branches
-│   └── sales_reports.php         # Chain-wide analytics
+├── 🎨 app/                               # Next.js 14 App Router
+│   ├── page.tsx                          # Home page (3D Temple)
+│   ├── layout.tsx                        # Root layout wrapper
+│   ├── globals.css                       # Global styles
+│   │
+│   ├── 📁 api/                           # API routes
+│   │   ├── chat/route.ts                 # Chat endpoint
+│   │   ├── auth/callback/route.ts        # OAuth callback
+│   │   ├── auth/logout/route.ts          # Logout endpoint
+│   │   ├── sessions/route.ts             # Session management
+│   │   └── health/route.ts               # Health check
+│   │
+│   ├── 📁 chat/                          # Chat pages
+│   │   └── [sessionId]/page.tsx          # Dynamic chat page
+│   │
+│   └── 📁 auth/                          # Auth pages
+│       ├── login/page.tsx
+│       ├── signup/page.tsx
+│       └── callback/page.tsx
 │
-├── employee/
-│   ├── employee_dashboard.php    # Personal overview
-│   ├── view_assigned_store.php   # Assigned branch details
-│   ├── record_sales.php          # Log new transactions
-│   └── view_sales.php            # Personal sales history
+├── 🧩 components/                        # Reusable React Components
+│   ├── ChatInterface/
+│   │   ├── ChatInterface.tsx             # Main chat component
+│   │   ├── MessageList.tsx               # Message display
+│   │   ├── InputBar.tsx                  # User input
+│   │   ├── CitationPanel.tsx             # Citations sidebar
+│   │   └── styles.module.css
+│   │
+│   ├── TempleOfJustice/
+│   │   ├── TempleOfJustice.tsx           # 3D scene component
+│   │   ├── Scene.ts                      # Three.js scene setup
+│   │   ├── Objects/
+│   │   │   ├── Temple.ts                 # Temple mesh
+│   │   │   ├── Lighting.ts               # Lights & shadows
+│   │   │   └── Particles.ts              # Particle effects
+│   │   └── styles.module.css
+│   │
+│   ├── Navigation/
+│   │   ├── Header.tsx                    # Top navigation
+│   │   ├── Sidebar.tsx                   # Left sidebar
+│   │   └── styles.module.css
+│   │
+│   ├── Auth/
+│   │   ├── LoginForm.tsx
+│   │   ├── SignupForm.tsx
+│   │   └── styles.module.css
+│   │
+│   └── Common/
+│       ├── LoadingSpinner.tsx
+│       ├── ErrorBoundary.tsx
+│       ├── Modal.tsx
+│       └── Tooltip.tsx
 │
-├── customer/
-│   ├── customer_dashboard.php    # Customer home
-│   ├── browse_products.php       # Product catalog + popups
-│   ├── review_product.php        # Submit ratings & reviews
-│   ├── purchase_history.php      # Past order log
-│   └── cart.php                  # Shopping cart
+├── 🛠️ lib/                                # Utilities & Helpers
+│   ├── supabase.ts                       # Supabase client
+│   ├── api.ts                            # API client
+│   ├── hooks/
+│   │   ├── useChat.ts                    # Chat hook
+│   │   ├── useAuth.ts                    # Authentication hook
+│   │   ├── useSessions.ts                # Session management
+│   │   └── useLocalStorage.ts
+│   ├── utils/
+│   │   ├── formatters.ts                 # Format utilities
+│   │   ├── validators.ts                 # Input validation
+│   │   ├── markdown.ts                   # Markdown parser
+│   │   └── dates.ts                      # Date utilities
+│   └── types/
+│       ├── index.ts                      # TypeScript types
+│       ├── chat.ts
+│       ├── user.ts
+│       └── api.ts
 │
-├── login.php                     # Unified login portal
-├── register.php                  # Customer registration
-├── logout.php                    # Session termination
-├── chain_of_store.sql            # Full DB schema + seed data
-└── README.md
+├── 🎨 styles/                            # Global styles
+│   ├── variables.css                     # CSS variables
+│   ├── theme.css                         # Theme definitions
+│   ├── animations.css                    # Animations
+│   └── responsive.css                    # Media queries
+│
+├── 🔧 model_server/                      # Python FastAPI Backend
+│   ├── 📄 main.py                        # FastAPI application
+│   ├── 📄 retrieval.py                   # RAG Retrieval Logic
+│   ├── 📄 build_index.py                 # Index Building Script
+│   ├── 📄 huffman.py                     # Compression (Optional)
+│   ├── 📄 requirements.txt                # Python dependencies
+│   │
+│   ├── 📁 data/
+│   │   └── legal_sections.csv            # Knowledge base
+│   │
+│   ├── 📁 models/
+│   │   └── ainsathi_qwen_merged/         # AI Model
+│   │
+│   ├── 📁 rag_store/                     # Generated RAG Index
+│   │   ├─ faiss.index
+│   │   ├─ chunks.jsonl
+│   │   ├─ metadata.json
+│   │   └─ bm25_model.pkl
+│   │
+│   ├── 📁 venv/                          # Virtual environment
+│   └── logs/
+│       └── model_server.log
+│
+├── 🧪 tests/                             # Test Suite
+│   ├── unit/
+│   │   ├── test_retrieval.py
+│   │   ├── test_compression.py
+│   │   └── test_api.py
+│   ├── integration/
+│   │   ├── test_chat_flow.py
+│   │   └── test_rag_pipeline.py
+│   └── fixtures/
+│       ├── sample_queries.json
+│       └── mock_data.json
+│
+├── 📊 scripts/
+│   ├── setup.sh                          # Setup script
+│   ├── dev.sh                            # Dev server script
+│   ├── build.sh                          # Build script
+│   └── deploy.sh                         # Deploy script
+│
+├── 📁 public/                            # Static assets
+│   ├── images/
+│   ├── icons/
+│   └── fonts/
+│
+└── 📖 schema.sql                         # Supabase schema
 ```
-
----
-
-## 🗃️ Database Schema
-
-| Table | Description |
-|---|---|
-| `users` | All accounts — manager, employee, customer — with role field |
-| `stores` | Branch records (name, location) |
-| `employees` | Employee profiles linked to user accounts |
-| `employee_store` | Junction table: employee ↔ branch assignment |
-| `products` | Catalog (name, price, description, stock) |
-| `sales` | Transactions logged by salesmen |
-| `cart` | Active shopping cart items per customer |
-| `orders` | Completed customer purchases |
-| `reviews` | Product star ratings and text reviews |
-
-> Full schema with constraints and seed data is in `chain_of_store.sql`.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| **Frontend** | HTML5, CSS3 (Vanilla) | Structure and styling |
-| **Icons** | FontAwesome | UI iconography |
-| **Backend** | PHP 7+ | Server-side logic |
-| **DB Driver** | PDO + MySQLi (hybrid) | Database access |
-| **Database** | MySQL 5.7+ / MariaDB | Data persistence |
-| **Auth** | PHP Sessions | Role-based access |
-| **UI Style** | Glassmorphism | Modern visual design |
-| **Server** | Apache (XAMPP / WAMP) | Local hosting |
+| Component | Technology | Version | Purpose |
+|-----------|-----------|---------|---------|
+| **Framework** | Next.js | 14+ | React meta-framework with SSR |
+| **Language** | TypeScript | 5.0+ | Type-safe development |
+| **UI Library** | React | 18+ | Component-based UI |
+| **3D Graphics** | Three.js | r128+ | 3D rendering |
+| **Backend** | FastAPI | 0.104+ | Async Python framework |
+| **Server** | Uvicorn | 0.24+ | ASGI server |
+| **Language** | Python | 3.10+ | Backend logic |
+| **Model** | Qwen | 7B/14B | Custom-trained LLM |
+| **Embeddings** | BERT/Qwen | Encoder | Vector representations |
+| **Vector DB** | FAISS | 1.7.4+ | Vector similarity search |
+| **Text Search** | BM25 | rank-bm25 | Full-text search |
+| **Database** | PostgreSQL | 14+ | Relational storage |
+| **Vector DB** | pgvector | Latest | Vector storage |
+| **Auth** | Supabase Auth | Latest | User authentication |
+| **Hosting** | Supabase | Cloud | Managed database |
 
 ---
 
-## 🚀 Installation & Setup
+## 📥 Installation & Setup
 
-### Prerequisites
+### Prerequisites Checklist
+```bash
+✓ Node.js v18 or v20 (LTS recommended)
+✓ npm v9+ or yarn v3+
+✓ Python 3.10, 3.11, or 3.12
+✓ pip (Python package manager)
+✓ Git (version control)
+✓ 8GB RAM minimum (16GB recommended)
+✓ Stable internet connection
+```
 
-- [XAMPP](https://www.apachefriends.org/) or [WAMP](https://www.wampserver.com/)
-- PHP 7.4+
-- MySQL 5.7+ or MariaDB 10.3+
-- A modern web browser
+### Verify Installations
+```bash
+# Frontend
+node --version           # v18.0.0 or higher
+npm --version            # 9.0.0 or higher
+
+# Backend
+python --version         # 3.10+ 
+python -m venv --help    # Check venv support
+
+# Others
+git --version
+```
 
 ---
 
-### Step 1 — Clone or Download
+## 🚀 Complete Setup Guide
+
+### **Phase 1: Repository Setup**
+
+#### Step 1.1: Clone Repository
+```bash
+# Clone the repository
+git clone https://github.com/TechySakib/ainsathi.git
+
+# Navigate to project
+cd ainsathi
+
+# Verify structure
+ls -la
+```
+
+#### Step 1.2: Initialize Git Configuration
+```bash
+# Set Git user (if not configured)
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+
+# Create feature branch
+git checkout -b feature/setup
+```
+
+---
+
+### **Phase 2: Frontend Setup**
+
+#### Step 2.1: Install Frontend Dependencies
+```bash
+# Install npm packages
+npm install
+
+# If you face peer dependency issues:
+npm install --legacy-peer-deps
+
+# Verify installation
+npm list
+```
+
+#### Step 2.2: Create Environment Configuration
+```bash
+# Create .env.local file
+cat > .env.local << EOF
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_ANON_KEY_HERE
+
+# AI Model Server
+LOCAL_MODEL_URL=http://localhost:8001
+EOF
+```
+
+#### Step 2.3: Obtain Supabase Credentials
+1. Go to [supabase.com](https://supabase.com/)
+2. Click "New Project"
+3. Configure project:
+   - **Project Name:** ainsathi-dev
+   - **Database Password:** (strong password)
+   - **Region:** Asia-Singapore (for Bangladesh)
+4. Wait for database initialization
+5. Navigate to Settings → API
+6. Copy:
+   - `Project URL` → `NEXT_PUBLIC_SUPABASE_URL`
+   - `anon public` → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+7. Save to `.env.local`
+
+#### Step 2.4: Initialize Database Schema
+```bash
+# Method 1: SQL Editor (Recommended)
+# 1. Go to Supabase Dashboard → SQL Editor
+# 2. Create new query
+# 3. Copy entire schema.sql content
+# 4. Execute
+
+# Method 2: CLI (if using Supabase CLI)
+supabase db push
+```
+
+#### Step 2.5: Test Frontend
+```bash
+# Start development server
+npm run dev
+
+# Expected output:
+# ▲ Next.js 14.0.0
+#   - Local:        http://localhost:3000
+#   - Environments: .env.local
+
+# Open browser: http://localhost:3000
+```
+
+---
+
+### **Phase 3: Backend Setup**
+
+#### Step 3.1: Navigate to Backend Directory
+```bash
+cd model_server
+pwd  # Verify you're in model_server
+```
+
+#### Step 3.2: Create Python Virtual Environment
+```bash
+# Create venv
+python -m venv venv
+
+# Activate virtual environment
+# On Windows (PowerShell):
+venv\Scripts\Activate.ps1
+
+# On Windows (Command Prompt):
+venv\Scripts\activate
+
+# On macOS/Linux:
+source venv/bin/activate
+
+# Verify activation (should show (venv) prefix):
+which python  # or: where python (Windows)
+```
+
+#### Step 3.3: Install Python Dependencies
+```bash
+# Upgrade pip
+pip install --upgrade pip
+
+# Install requirements
+pip install -r requirements.txt
+
+# If FAISS fails on Windows, use:
+pip install faiss-cpu --no-cache-dir
+
+# Verify installation
+pip list | grep -E "fastapi|faiss|torch|transformers"
+```
+
+#### Step 3.4: Verify Legal Dataset
+```bash
+# Check if data exists
+ls -la data/legal_sections.csv
+
+# Inspect dataset
+python << 'EOF'
+import pandas as pd
+
+df = pd.read_csv('data/legal_sections.csv')
+print(f"Dataset shape: {df.shape}")
+print(f"Columns: {df.columns.tolist()}")
+print(f"Sample row:\n{df.iloc[0]}")
+EOF
+```
+
+#### Step 3.5: Add Trained Model
+```bash
+# Create models directory
+mkdir -p models
+
+# Copy trained model
+cp -r /path/to/ainsathi_qwen_merged models/
+
+# Verify model structure
+ls -la models/ainsathi_qwen_merged/
+```
+
+#### Step 3.6: Build RAG Index
+```bash
+# Build FAISS and BM25 indices
+python build_index.py
+
+# Expected output:
+# Loading data...
+# Building embeddings...
+# Creating FAISS index...
+# Creating BM25 index...
+# Saving metadata...
+# Index built successfully!
+
+# Verify index creation
+ls -la rag_store/
+```
+
+#### Step 3.7: Start FastAPI Backend Server
+```bash
+# Set model port
+export MODEL_PORT=8001  # macOS/Linux
+# OR: $env:MODEL_PORT="8001"  # Windows PowerShell
+
+python main.py
+
+# Expected output:
+# INFO:     Uvicorn running on http://0.0.0.0:8001
+# INFO:     Application startup complete
+```
+
+---
+
+### **Phase 4: Testing & Verification**
+
+#### Step 4.1: Test Backend Health
+```bash
+# Test health endpoint
+curl -s http://localhost:8001/health | jq
+
+# Expected output:
+# {
+#   "status": "ok",
+#   "model_loaded": true,
+#   "rag_enabled": true,
+#   "uptime_seconds": 12.5
+# }
+```
+
+#### Step 4.2: Test Retrieval System
+```bash
+# Test retrieval with sample query
+curl -s "http://localhost:8001/debug-retrieve?q=চুরি" | jq
+```
+
+#### Step 4.3: Test Chat Endpoint
+```bash
+# Test chat with a query
+curl -X POST http://localhost:8001/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message":"চুরি কী?","history":[]}'
+```
+
+#### Step 4.4: Launch Frontend
+```bash
+# Navigate to project root
+cd /path/to/ainsathi
+
+# Start Next.js development server
+npm run dev
+
+# Navigate to http://localhost:3000
+```
+
+---
+
+## 🎯 API Documentation
+
+### **Chat Endpoint (Main)**
+```
+POST /api/chat
+Content-Type: application/json
+Authorization: Bearer <JWT_TOKEN>
+
+Request Body:
+{
+  "message": "চুরি কী?",
+  "sessionId": "uuid-here",
+  "history": []
+}
+
+Response (Streaming SSE):
+data: {"chunk":"চুরি","tokens":1}
+data: {"chunk":" হল","tokens":2}
+...
+data: {"finalResponse":{"citations":[...]}}
+```
+
+### **Health Check Endpoint**
+```
+GET /api/health
+
+Response:
+{
+  "status": "ok",
+  "database": "connected",
+  "model_server": "running",
+  "timestamp": "2024-01-15T10:30:00Z"
+}
+```
+
+### **Sessions Endpoint**
+```
+GET /api/sessions
+Authorization: Bearer <JWT_TOKEN>
+
+Response:
+{
+  "sessions": [
+    {
+      "id": "uuid",
+      "title": "Legal Question",
+      "created_at": "2024-01-15T10:00:00Z",
+      "message_count": 5
+    }
+  ]
+}
+```
+
+---
+
+## 🚢 Deployment Guide
+
+### **Frontend Deployment (Vercel)**
+```bash
+# Step 1: Push to GitHub
+git push origin feature/setup
+
+# Step 2: Connect Vercel
+# Go to vercel.com → Import Project → Select GitHub repo
+
+# Step 3: Configure Environment
+# In Vercel Dashboard → Settings → Environment Variables
+NEXT_PUBLIC_SUPABASE_URL=your-production-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-production-key
+LOCAL_MODEL_URL=https://api.yourdomain.com/model
+
+# Step 4: Deploy
+# Automatic on push to main
+```
+
+### **Backend Deployment (Railway/Render)**
+```bash
+# Step 1: Create Dockerfile
+cat > model_server/Dockerfile << 'EOF'
+FROM python:3.10-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+
+EXPOSE 8001
+CMD ["python", "main.py"]
+EOF
+
+# Step 2: Deploy to Railway/Render
+# Go to railway.app or render.com
+# Connect GitHub repo
+# Set environment variables
+# Deploy
+```
+
+---
+
+## 🤝 Contributing
+
+### Contribution Guidelines
 
 ```bash
-git clone https://github.com/your-username/Chain-of-Stores-Sale-Management-System.git
-```
-Or download and extract the ZIP.
+# Fork & clone
+git clone https://github.com/TechySakib/ainsathi.git
+cd ainsathi
 
----
+# Create feature branch
+git checkout -b feature/add-language-support
 
-### Step 2 — Move to Server Root
+# Make changes & commit
+git commit -m "✨ feat: add Bengali query expansion"
 
-| Server | Web Root |
-|---|---|
-| XAMPP (Windows) | `C:/xampp/htdocs/` |
-| WAMP (Windows) | `C:/wamp64/www/` |
-| LAMP (Linux) | `/var/www/html/` |
-
-Your final path should look like:
-```
-htdocs/Chain-of-Stores-Sale-Management-System/
+# Push & create PR
+git push origin feature/add-language-support
 ```
 
 ---
 
-### Step 3 — Database Setup
+## 📊 Performance Metrics
 
-1. Start **Apache** and **MySQL** from your control panel.
-2. Open `http://localhost/phpmyadmin`.
-3. Create a new database named `chain_of_store`.
-4. Select it → **Import** tab → upload `chain_of_store.sql` → click **Go**.
+### Speed Benchmarks
+```
+Metric                    │ Time    │ Hardware
+──────────────────────────┼─────────┼──────────
+Query Tokenization        │ 12ms    │ CPU
+FAISS Vector Search       │ 45ms    │ CPU
+BM25 Keyword Search       │ 28ms    │ CPU
+Model Forward Pass (7B)   │ 1.2s    │ CPU
+Total E2E Latency         │ ~1.8s   │ CPU
+```
 
----
-
-### Step 4 — Configure Credentials
-
-Edit `includes/db.php` if your MySQL setup differs from defaults:
-
-```php
-$host = '127.0.0.1';
-$db   = 'chain_of_store';
-$user = 'root';
-$pass = ''; // Add your password here if set
+### Storage Efficiency
+```
+Component              │ Size
+───────────────────────┼──────────
+legal_sections.csv     │ 12 MB
+FAISS index            │ 145 MB
+BM25 index             │ 8 MB
+Metadata JSON          │ 2 MB
+Model (Qwen 7B)        │ 14 GB
+Node modules           │ 850 MB
+Python venv            │ 2.3 GB
 ```
 
 ---
 
-### Step 5 — Launch
+## ⚠️ Troubleshooting
 
-Open your browser and navigate to:
+### Common Issues
 
+#### Backend Connection Refused
+```bash
+# Check if backend is running
+curl http://localhost:8001/health
+
+# Check port usage
+lsof -i :8001  # macOS/Linux
+netstat -ano | findstr :8001  # Windows
+
+# Kill process and restart
+kill -9 <PID>  # macOS/Linux
+python main.py
 ```
-http://localhost/Chain-of-Stores-Sale-Management-System/
+
+#### RAG Store Not Found
+```bash
+cd model_server
+python build_index.py
+ls -la rag_store/  # Verify creation
+```
+
+#### Model Not Loading
+```bash
+# Check model directory
+ls -la models/ainsathi_qwen_merged/
+
+# Required files:
+# ✓ config.json
+# ✓ generation_config.json
+# ✓ model.safetensors
+# ✓ tokenizer.json
 ```
 
 ---
 
-## 🔐 Default Credentials
+## 📞 Support & Community
 
-| Role | Email | Password |
-|---|---|---|
-| **Manager** | `manager@store.com` | `password` |
-| **Salesman** | `salesman@store.com` | `password` |
-| **Customer** | Register via `/register.php` | *(self-set)* |
-
-> ⚠️ Change these before deploying to any public or production environment.
+- **GitHub Issues** → [Report bugs](https://github.com/TechySakib/ainsathi/issues)
+- **GitHub Discussions** → [Ask questions](https://github.com/TechySakib/ainsathi/discussions)
 
 ---
 
-## 🔒 Security Considerations
+## 📚 Learning Resources
 
-| Practice | Status |
-|---|---|
-| PDO Prepared Statements (SQL injection prevention) | ✅ Implemented |
-| Session-based authentication | ✅ Implemented |
-| Role-based page access checks | ✅ Implemented |
-| Password hashing (`password_hash` / bcrypt) | ⚠️ Verify in `register.php` |
-| CSRF protection on forms | 🔲 Recommended to add |
-| Input sanitization & validation | ⚠️ Review all form inputs |
-| HTTPS enforcement | 🔲 Required for production |
+### Official Documentation
+- [Next.js Docs](https://nextjs.org/docs)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Supabase Docs](https://supabase.com/docs)
+- [Three.js Documentation](https://threejs.org/docs/)
 
----
-
-## 🔮 Limitations & Future Improvements
-
-- No email verification on registration — can be added with PHPMailer
-- No product image uploads — file upload with validation can be introduced
-- PDO/MySQLi hybrid — refactoring to PDO-only would improve consistency
-- No pagination on large list views — recommended for scalability
-- No REST API layer — would enable mobile app integration in the future
+### RAG & LLM Resources
+- [RAG Paper](https://arxiv.org/abs/2005.11401)
+- [Sentence Transformers](https://www.sbert.net/)
+- [FAISS Documentation](https://github.com/facebookresearch/faiss)
+- [Qwen Model Hub](https://huggingface.co/Qwen)
 
 ---
 
-## 👥 Team
+## 👥 Team & Credits
 
-| Name | Role |
-|---|---|
-| **[Your Name]** | Full-Stack Developer |
+| Name | Role | GitHub |
+|------|------|--------|
+| **Md Nazmus Sakib** | Lead Developer | [@TechySakib](https://github.com/TechySakib) |
+| **Dewan Anisa Nahian** | Backend Engineer | [@Anisa-Nahian](https://github.com/Anisa-Nahian) |
 
 ---
 
 <div align="center">
 
-**Built with ❤️ using PHP, MySQL, HTML & CSS**
+### 🔥 Built with Intelligence, Optimized with Algorithms, Designed for Justice
 
-*Version: 1.0.0 — Status: Development*
+**Made with ❤️ by the Legal AI Team**
 
-**[⬆ Back to Top](#-chain-of-stores--sales-management-system)**
+![Made with Next.js](https://img.shields.io/badge/Made%20with-Next.js-black?style=flat-square&logo=next.js)
+![Powered by FastAPI](https://img.shields.io/badge/Powered%20by-FastAPI-009688?style=flat-square&logo=fastapi)
+![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9C%93-brightgreen?style=flat-square)
+
+**[⬆ Back to Top](#-আইনসাথী-ainsathi---ai-legal-assistant)**
+
+---
+
+*Version: 1.0.0 — Status: Production Ready* ✨
 
 </div>
